@@ -39,7 +39,7 @@ def sestina_me(six_words, final_dict, count=1):
     # Stopping condition
     elif final_dict[6]:
         # Final stanza consists of only three lines, so for simplicity, we'll handle manually
-        final_dict[7] = [six_words[0], six_words[4], six_words[5]]
+        final_dict[7] = [six_words[3], six_words[4], six_words[5]]
         return final_dict
 
     # Extremely iterative recursive solution
