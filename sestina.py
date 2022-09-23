@@ -10,7 +10,7 @@ def permutate(sestina_words):
     # Creates temporary list for permutation of the length of the passed list
     temp_words = [None] * len(sestina_words)
 
-    # Stores the index of the element of sestina_list that will next be placed in temp_words.
+    # Stores the index of the element of sestina_words that will next be placed in temp_words.
     location = len(sestina_words) - 1
 
     # Used to indicate the amount by which we add or subtract for any given index and is decremented after each pass.
@@ -31,11 +31,11 @@ def permutate(sestina_words):
 
     return temp_words
 
-
-def sestina_me(words, final_dict=None, count=1):
+# The main function for the program. Accepts list of words. Users can specify whether the final envoi should be
+# reversed or not. envoi=False will return normal ECA tercet, and envoi=True will return ACE tercet.
+def sestina_me(words, final_dict=None, count=1, envoi=False):
     # Needs better error handling, but it works for current needs.
     if len(words) <= 2:
-        # print("ERROR: The word count must be greater than two words.")
         return "ERROR: The word count must be greater than two words."
 
     elif final_dict is None and count == 1:
@@ -47,7 +47,7 @@ def sestina_me(words, final_dict=None, count=1):
         # Assigns the original word order to the first stanza
         final_dict[count] = words
         count += 1
-        sestina_me(words, final_dict, count)
+        sestina_me(words, final_dict, count, envoi)
 
     # Stopping condition
     elif final_dict[len(words)]:
@@ -64,6 +64,9 @@ def sestina_me(words, final_dict=None, count=1):
         for num in range(-i, 0):
             final_stanza.append(words[len(words) + num])
 
+        if envoi:
+            final_stanza.reverse()
+
         final_dict[len(words) + 1] = final_stanza
 
         return final_dict
@@ -73,7 +76,7 @@ def sestina_me(words, final_dict=None, count=1):
         new_perm = permutate(words)
         final_dict[count] = new_perm
         count += 1
-        sestina_me(new_perm, final_dict, count)
+        sestina_me(new_perm, final_dict, count, envoi)
 
     return final_dict
 
@@ -81,14 +84,14 @@ def sestina_me(words, final_dict=None, count=1):
 test_words = ["whine", "shadow", "blast", "tunnel", "rest", "letter"]
 final_form = sestina_me(test_words)
 
-big_test_words = ["test", "this", "input", "on", "something", "bigger", "than", "a", "standard", "sestina"]
+big_test_words = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
 big_final_form = sestina_me(big_test_words)
 
-small_test_words = ["only", "three", "words"]
+small_test_words = ["A", "B", "C"]
 small_final_form = sestina_me(small_test_words)
 
-error_words = ["one", "two"]
-error_final_form = sestina_me(error_words)
+bigger_test_words = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"]
+bigger_final_form = sestina_me(bigger_test_words, envoi=True)
 
 # Printing results of standard sestina with six lines
 print("Standard sestina with six lines:")
@@ -114,8 +117,10 @@ for stanza in small_final_form:
 
 print()
 
-print("The result of passing two or fewer words: ")
-print(error_final_form)
-
+# Largest sestina with eleven lines and reversed envoi
+print("Largest sestina with eleven lines:")
+for stanza in bigger_final_form:
+    print("Stanza ", stanza)
+    print(bigger_final_form[stanza])
 
 
