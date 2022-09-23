@@ -1,6 +1,7 @@
 # Program takes a list of words to be used as the end-words in a sestina and generates their order throughout
 # all stanzas of the poem. While a sestina traditionally has only six words, this program can apply the sestina
 # permutation algorithm to word lists of arbitrary size.
+
 def permutate(sestina_words):
     # The algorithm for the permutation of the traditional sestina has a pattern where we first subtract by 5,
     # then add by 4, then subtract by 3, then add by 2, and finally subtract by 1. Applying this method to the length
