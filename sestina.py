@@ -31,6 +31,7 @@ def permutate(sestina_words):
 
     return temp_words
 
+
 # The main function for the program. Accepts list of words. Users can specify whether the final envoi should be
 # reversed or not. envoi=False will return normal ECA tercet, and envoi=True will return ACE tercet.
 def sestina_me(words, final_dict=None, count=1, envoi=False):
