@@ -38,7 +38,7 @@ def sestina_me(words, final_dict=None, count=1):
         # print("ERROR: The word count must be greater than two words.")
         return "ERROR: The word count must be greater than two words."
 
-    if final_dict is None and count == 1:
+    elif final_dict is None and count == 1:
         # Initializes dictionary to store word order by stanza number
         final_dict = {}
         for i in range(1, len(words) + 1):
